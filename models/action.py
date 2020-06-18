@@ -39,7 +39,7 @@ class _learnBuildPolynomialRegressionModel(action._action):
 		if graph != None and len(graph) > 0:
 			graph = graph[0]
 			x,y = graph.getGraph()
-			myModel = numpy.poly1d(numpy.polyfit(x, y, 10 ))
+			myModel = numpy.poly1d(numpy.polyfit(x, y, 10))
 			r2 = r2_score(y, myModel(x))
 			graph.saveModel(myModel,r2)
 
@@ -64,8 +64,7 @@ class _learnGraphPredict(action._action):
 		actionResult["rc"] = 0
 		return actionResult
 
-
-
+numpy.warnings.filterwarnings('ignore')
 
 def getGraph(graphName,sessionData):
 	return learn._learnGraph().getAsClass(query={ "name" : graphName },fields=["name","classID","_id","acl"]) 
