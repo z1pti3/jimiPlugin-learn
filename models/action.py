@@ -9,14 +9,14 @@ from core import helpers, cache
 
 class _learnPlotGraph(action._action):
 	graphName = str()
-	xy = list()
+	xy = str()
 
 	def __init__(self):
 		cache.globalCache.newCache("learnGraphCache")
 
 	def run(self,data,persistentData,actionResult):
 		graphName = helpers.evalString(self.graphName,{"data" : data})
-		xy = helpers.evalList(self.xy,{"data" : data})
+		xy = helpers.evalString(self.graphName,{"data" : data})
 		graph = cache.globalCache.get("learnGraphCache",graphName,getGraph)
 		if graph != None and len(graph) > 0:
 			graph = graph[0]
