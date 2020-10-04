@@ -43,6 +43,7 @@ class _learnBuildPolynomialRegressionModel(action._action):
 			r2 = r2_score(y, myModel(x))
 			graph.saveModel(myModel,r2)
 
+		actionResult["r2"] = r2
 		actionResult["result"] = True
 		actionResult["rc"] = 0
 		return actionResult
