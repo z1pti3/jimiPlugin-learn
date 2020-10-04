@@ -16,7 +16,7 @@ class _learnPlotGraph(action._action):
 
 	def run(self,data,persistentData,actionResult):
 		graphName = helpers.evalString(self.graphName,{"data" : data})
-		xy = helpers.evalString(self.graphName,{"data" : data})
+		xy = helpers.evalString(self.xy,{"data" : data})
 		graph = cache.globalCache.get("learnGraphCache",graphName,getGraph)
 		if graph != None and len(graph) > 0:
 			graph = graph[0]
@@ -60,6 +60,20 @@ class _learnGraphPredict(action._action):
 			myModel = graph.getModel()
 			actionResult["prediction"] = myModel(value)
 
+		actionResult["result"] = True
+		actionResult["rc"] = 0
+		return actionResult
+
+class _learnGraphClean(action._action):
+	graphName = str()
+	preserveAmount = int()
+
+	def run(self,data,persistentData,actionResult):
+		graphName = helpers.evalString(self.graphName,{"data" : data})
+		graph = cache.globalCache.get("learnGraphCache",graphName,getGraph)
+		if graph != None and len(graph) > 0:
+			graph = graph[0]
+			myModel = graph.cleanGraph(self.preserveAmount)
 		actionResult["result"] = True
 		actionResult["rc"] = 0
 		return actionResult

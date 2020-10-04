@@ -18,6 +18,27 @@ class _learnGraph(db._document):
     def appendGraph(self,xy):
         db.updateDocumentByID(self._dbCollection,self._id,{ "$push" : { "xy" : { "$each" : xy } }, "$set" : { "lastUpdateTime" : time.time() } })
 
+    def cleanGraph(self,preserveAmount):
+        results = self._dbCollection.aggregate([
+            {
+                "$match": {
+                    "name" : self.name
+                }
+            },
+            {
+                "$project": { 
+                    "count" : { "$size" : "$xy" }
+                }
+            }
+            ])
+        for result in results:
+            xyLength = result["count"]
+            xyLength = xyLength - preserveAmount
+            for x in range(1,xyLength):
+                # Need to change this into a aggregate function - could not find a way to delete multiple records in one go!
+                db.updateDocumentByID(self._dbCollection,self._id,{ "$pop" : { "xy" : -1 }, "$set" : { "lastUpdateTime" : time.time() } })
+            break
+
     def getGraph(self):
         query = { "_id" : db.ObjectId(self._id) }
         doc = self._dbCollection.find_one(query)
