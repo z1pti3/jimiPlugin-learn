@@ -1,0 +1,41 @@
+<script src="{{ url_for('static', filename='includes/jquery/js/jquery-3.4.1.js') }}"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='includes/bootstrap-3.3.7/css/bootstrap.min.css') }}">
+<script src="{{ url_for('static', filename='includes/bootstrap-3.3.7/js/bootstrap.min.js') }}"></script>
+
+<script src="/plugin/learn/includes/plotly-1.2.0.min.js"></script>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='themes/default/default.css') }}">
+
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="visualization" ></div>
+    </body>
+</html>
+
+<script>
+    var x = {{ x }};
+    var y = {{ y }};
+    var trace1 = {
+        x: x,
+        y: y,
+        mode: 'markers',
+        type: 'scatter'
+    };
+    var data = [trace1];
+    var layout = {
+        showlegend: false,
+        plot_bgcolor: "#222222",
+        paper_bgcolor: "#0a0a0a",
+        font: {
+            color : "#ddd"
+        }
+    };
+    Plotly.newPlot('visualization', data, layout, {staticPlot: true});
+</script>
+
+
