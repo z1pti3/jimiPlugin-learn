@@ -19,5 +19,5 @@ def mainPage(graphName):
     if len(graph) == 1:
         graph = graph[0]
         xy = graph.getGraph()
-        return render_template("learnModel.html", x=xy[0], y=xy[1])
+        return render_template("learnModel.html", x=xy[0], y=xy[1], r2=graph.r2 )
     return { "result" : "Not found" }, 404
