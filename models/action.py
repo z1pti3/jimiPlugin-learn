@@ -71,6 +71,23 @@ class _learnCalculateGraphStatistics(action._action):
 				xyData[x]["std"] = numpy.std(value["y"])
 				xyData[x]["percentile"] = numpy.percentile(value["y"],self.percentile)
 				del xyData[x]["y"]
+			graph.setStatistics(xyData)
+			actionResult["result"] = True
+			actionResult["rc"] = 0
+			actionResult["statistics"] = xyData
+		return actionResult
+
+class _learnGetGraphStatistics(action._action):
+	graphName = str()
+
+	def run(self,data,persistentData,actionResult):
+		graphName = helpers.evalString(self.graphName,{"data" : data})
+		graph = cache.globalCache.get("learnGraphCache",graphName,getGraph)
+		actionResult["result"] = False
+		actionResult["rc"] = 404
+		if graph != None and len(graph) > 0:
+			graph = graph[0]
+			xyData = graph.getStatistics()
 			actionResult["result"] = True
 			actionResult["rc"] = 0
 			actionResult["statistics"] = xyData

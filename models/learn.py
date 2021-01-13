@@ -49,6 +49,14 @@ class _learnGraph(db._document):
             y.append(xy[1])
         return (x,y)
 
+    def getStatistics(self,xyStatisticsDict):
+        query = { "_id" : db.ObjectId(self._id) }
+        doc = self._dbCollection.find_one(query)
+        return doc["statistics"]
+
+    def setStatistics(self,xyStatisticsDict):
+        db.updateDocumentByID(self._dbCollection,self._id,{ "$set" : { "statistics" : xyStatisticsDict } })
+
     def saveModel(self,model,r2):
         # Check how safe this function is
         obj = pickle.dumps(model)
