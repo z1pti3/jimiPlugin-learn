@@ -1,7 +1,7 @@
 from core import plugin, model
 
 class _learn(plugin._plugin):
-    version = 0.5
+    version = 0.6
 
     def install(self):
         # Register models
@@ -10,6 +10,7 @@ class _learn(plugin._plugin):
         model.registerModel("learnBuildPolynomialRegressionModel","_learnBuildPolynomialRegressionModel","_action","plugins.learn.models.action")
         model.registerModel("learnGraphPredict","_learnGraphPredict","_action","plugins.learn.models.action")
         model.registerModel("learnGraphClean","_learnGraphClean","_action","plugins.learn.models.action")
+        model.registerModel("learnCalculateGraphStatistics","_learnCalculateGraphStatistics","_action","plugins.learn.models.action")
         return True
 
     def uninstall(self):
@@ -19,10 +20,13 @@ class _learn(plugin._plugin):
         model.deregisterModel("learnBuildPolynomialRegressionModel","_learnBuildPolynomialRegressionModel","_action","plugins.learn.models.action")
         model.deregisterModel("learnGraphPredict","_learnGraphPredict","_action","plugins.learn.models.action")
         model.deregisterModel("learnGraphClean","_learnGraphClean","_action","plugins.learn.models.action")
+        model.deregisterModel("learnCalculateGraphStatistics","_learnCalculateGraphStatistics","_action","plugins.learn.models.action")
         return True
 
         
     def upgrade(self,LatestPluginVersion):
+        if self.version < 0.6:
+            model.registerModel("learnCalculateGraphStatistics","_learnCalculateGraphStatistics","_action","plugins.learn.models.action")
         if self.version < 0.5:
             model.registerModel("learnGraphClean","_learnGraphClean","_action","plugins.learn.models.action")
         if self.version < 0.4:

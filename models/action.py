@@ -48,6 +48,34 @@ class _learnBuildPolynomialRegressionModel(action._action):
 		actionResult["rc"] = 0
 		return actionResult
 
+class _learnCalculateGraphStatistics(action._action):
+	graphName = str()
+	percentile = 90
+
+	def run(self,data,persistentData,actionResult):
+		graphName = helpers.evalString(self.graphName,{"data" : data})
+		graph = cache.globalCache.get("learnGraphCache",graphName,getGraph)
+		actionResult["result"] = False
+		actionResult["rc"] = 5
+		if graph != None and len(graph) > 0:
+			graph = graph[0]
+			xArray,yArray = graph.getGraph()
+			xyData = {}
+			for index in range(0,len(xArray)-1):
+				try:
+					xyData[xArray[index]]["y"].append(yArray[index])
+				except KeyError:
+					xyData[xArray[index]] = { "y": [yArray[index]] }
+			for x,value in xyData.items():
+				xyData[x]["mean"] = numpy.mean(value["y"])
+				xyData[x]["std"] = numpy.std(value["y"])
+				xyData[x]["percentile"] = numpy.percentile(value["y"],self.percentile)
+				del xyData[x]["y"]
+			actionResult["result"] = True
+			actionResult["rc"] = 0
+			actionResult["statistics"] = xyData
+		return actionResult
+
 class _learnGraphPredict(action._action):
 	graphName = str()
 	value = str()
