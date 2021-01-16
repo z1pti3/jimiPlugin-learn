@@ -45,7 +45,7 @@ class _learnBuildPolynomialRegressionModel(action._action):
 				tempY = []
 				xyData = graph.getStatistics()
 				for index in range(0,len(x)-1):
-					if y[index] > xyData[x[index]]["mean"]-xyData[x[index]]["std"] and y[index] < xyData[x[index]]["mean"]+xyData[x[index]]["std"]
+					if y[index] > xyData[x[index]]["mean"]-xyData[x[index]]["std"] and y[index] < xyData[x[index]]["mean"]+xyData[x[index]]["std"]:
 						tempX.append(x[index])
 						tempY.append(y[index])
 				x = tempX
