@@ -18,8 +18,17 @@ def graphPage(graphName):
     graph = learn._learnGraph().getAsClass(sessionData=api.g.sessionData,query={ "name" : graphName })
     if len(graph) == 1:
         graph = graph[0]
-        xy = graph.getGraph()
-        return render_template("learnModel.html", x=xy[0], y=xy[1], r2=graph.r2 )
+        x,y = graph.getGraph()
+        tempX = []
+        tempY = []
+        xyData = graph.getStatistics()
+        for index in range(0,len(x)-1):
+            if y[index] > xyData[str(x[index])]["mean"]-xyData[str(x[index])]["std"] and y[index] < xyData[str(x[index])]["mean"]+xyData[str(x[index])]["std"]:
+                tempX.append(x[index])
+                tempY.append(y[index])
+        x = tempX
+        y = tempY
+        return render_template("learnModel.html", x=x, y=y, r2=graph.r2 )
     return { "result" : "Not found" }, 404
 
 @pluginPages.route("/learn/",methods=["GET"])

@@ -45,7 +45,7 @@ class _learnBuildPolynomialRegressionModel(action._action):
 				tempY = []
 				xyData = graph.getStatistics()
 				for index in range(0,len(x)-1):
-					if y[index] > xyData[x[index]]["mean"]-xyData[x[index]]["std"] and y[index] < xyData[x[index]]["mean"]+xyData[x[index]]["std"]:
+					if y[index] > xyData[str(x[index])]["mean"]-xyData[str(x[index])]["std"] and y[index] < xyData[str(x[index])]["mean"]+xyData[str(x[index])]["std"]:
 						tempX.append(x[index])
 						tempY.append(y[index])
 				x = tempX
@@ -74,14 +74,15 @@ class _learnCalculateGraphStatistics(action._action):
 			xyData = {}
 			for index in range(0,len(xArray)-1):
 				try:
-					xyData[xArray[index]]["y"].append(yArray[index])
+					xyData[str(xArray[index])]["y"].append(yArray[index])
 				except KeyError:
-					xyData[xArray[index]] = { "y": [yArray[index]] }
+					xyData[str(xArray[index])] = { "y": [yArray[index]] }
 			for x,value in xyData.items():
 				xyData[x]["mean"] = numpy.mean(value["y"])
 				xyData[x]["std"] = numpy.std(value["y"])
 				xyData[x]["percentile"] = numpy.percentile(value["y"],self.percentile)
 				del xyData[x]["y"]
+			xyData = helpers.unicodeEscapeDict(xyData)
 			graph.setStatistics(xyData)
 			actionResult["result"] = True
 			actionResult["rc"] = 0
