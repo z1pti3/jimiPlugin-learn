@@ -32,6 +32,7 @@ class _learnPlotGraph(action._action):
 
 class _learnBuildPolynomialRegressionModel(action._action):
 	graphName = str()
+	stdMeanMode = bool()
 
 	def run(self,data,persistentData,actionResult):
 		graphName = helpers.evalString(self.graphName,{"data" : data})
@@ -39,6 +40,16 @@ class _learnBuildPolynomialRegressionModel(action._action):
 		if graph != None and len(graph) > 0:
 			graph = graph[0]
 			x,y = graph.getGraph()
+			if self.stdMeanMode:
+				tempX = []
+				tempY = []
+				xyData = graph.getStatistics()
+				for index in range(0,len(x)-1):
+					if y[index] > xyData[x[index]]["mean"]-xyData[x[index]]["std"] and y[index] < xyData[x[index]]["mean"]+xyData[x[index]]["std"]
+						tempX.append(x[index])
+						tempY.append(y[index])
+				x = tempX
+				y = tempY
 			myModel = numpy.poly1d(numpy.polyfit(x, y, 10))
 			r2 = r2_score(y, myModel(x))
 			graph.saveModel(myModel,r2)
