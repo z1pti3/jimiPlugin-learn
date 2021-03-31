@@ -9,11 +9,11 @@ from plugins.learn.models import learn
 
 pluginPages = Blueprint('learnPages', __name__, template_folder="templates")
 
-@pluginPages.route('/learn/includes/<file>')
+@pluginPages.route('/includes/<file>')
 def custom_static(file):
     return send_from_directory(str(Path("plugins/learn/web/includes")), file)
 
-@pluginPages.route("/learn/graph/<graphName>/",methods=["GET"])
+@pluginPages.route("/graph/<graphName>/",methods=["GET"])
 def graphPage(graphName):
     graph = learn._learnGraph().getAsClass(sessionData=api.g.sessionData,query={ "name" : graphName })
     if len(graph) == 1:
@@ -31,7 +31,7 @@ def graphPage(graphName):
         return render_template("learnModel.html", x=x, y=y, r2=graph.r2 )
     return { "result" : "Not found" }, 404
 
-@pluginPages.route("/learn/",methods=["GET"])
+@pluginPages.route("/",methods=["GET"])
 def mainPage():
     return { }, 200
 
