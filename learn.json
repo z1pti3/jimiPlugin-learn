@@ -1,0 +1,341 @@
+{
+   "name": "learn",
+   "author": "z1p",
+   "version": 0.6,
+   "categories": [],
+   "description": "",
+   "icon": null,
+   "requirements": {
+      "jimi_min_version": null,
+      "jimi_max_version": null,
+      "plugins": []
+   },
+   "collections": {
+      "learnGraph": {
+         "display_name": "learnGraph",
+         "className": "_learnGraph",
+         "class_location": "models.learn",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "name",
+               "schema_value": "name",
+               "type": "input",
+               "label": "name",
+               "description": ""
+            },
+            {
+               "schema_item": "r2",
+               "schema_value": "r2",
+               "type": "input",
+               "label": "r2",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      }
+   },
+   "triggers": {},
+   "actions": {
+      "learnPlotGraph": {
+         "display_name": "learnPlotGraph",
+         "className": "_learnPlotGraph",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            },
+            {
+               "schema_item": "xy",
+               "schema_value": "xy",
+               "type": "input",
+               "label": "xy",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      },
+      "learnBuildPolynomialRegressionModel": {
+         "display_name": "learnBuildPolynomialRegressionModel",
+         "className": "_learnBuildPolynomialRegressionModel",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            },
+            {
+               "schema_item": "stdMeanMode",
+               "schema_value": "stdMeanMode",
+               "type": "checkbox",
+               "label": "stdMeanMode",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      },
+      "learnCalculateGraphStatistics": {
+         "display_name": "learnCalculateGraphStatistics",
+         "className": "_learnCalculateGraphStatistics",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            },
+            {
+               "schema_item": "percentile",
+               "schema_value": "percentile",
+               "type": "input",
+               "label": "percentile",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      },
+      "learnGetGraphStatistics": {
+         "display_name": "learnGetGraphStatistics",
+         "className": "_learnGetGraphStatistics",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      },
+      "learnGraphPredict": {
+         "display_name": "learnGraphPredict",
+         "className": "_learnGraphPredict",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            },
+            {
+               "schema_item": "value",
+               "schema_value": "value",
+               "type": "input",
+               "label": "value",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      },
+      "learnGraphClean": {
+         "display_name": "learnGraphClean",
+         "className": "_learnGraphClean",
+         "class_location": "models.action",
+         "description": "",
+         "fields": [
+            {
+               "schema_item": "graphName",
+               "schema_value": "graphName",
+               "type": "input",
+               "label": "graphName",
+               "description": ""
+            },
+            {
+               "schema_item": "preserveAmount",
+               "schema_value": "preserveAmount",
+               "type": "input",
+               "label": "preserveAmount",
+               "description": ""
+            }
+         ],
+         "data_out": {
+            "result": {
+               "description": "Returns True when successful.",
+               "type": "boolean",
+               "always_present": true,
+               "values": {
+                  "True": {
+                     "description": "Successful."
+                  },
+                  "False": {
+                     "description": "Failure."
+                  }
+               }
+            },
+            "rc": {
+               "description": "Returns the exit code for the action.",
+               "type": "number",
+               "always_present": true,
+               "values": {
+                  "0": {
+                     "description": "Successful."
+                  }
+               }
+            }
+         }
+      }
+   },
+   "settings": {}
+}
