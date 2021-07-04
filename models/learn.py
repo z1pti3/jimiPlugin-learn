@@ -49,7 +49,7 @@ class _learnGraph(db._document):
             y.append(xy[1])
         return (x,y)
 
-    def getStatistics(self,xyStatisticsDict):
+    def getStatistics(self):
         query = { "_id" : db.ObjectId(self._id) }
         doc = self._dbCollection.find_one(query)
         return helpers.unicodeUnescapeDict(doc["statistics"])
