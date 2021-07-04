@@ -52,7 +52,7 @@ class _learnGraph(db._document):
     def getStatistics(self,xyStatisticsDict):
         query = { "_id" : db.ObjectId(self._id) }
         doc = self._dbCollection.find_one(query)
-        return helpers.unicodeEscapeDict(doc["statistics"])
+        return helpers.unicodeUnescapeDict(doc["statistics"])
 
     def setStatistics(self,xyStatisticsDict):
         db.updateDocumentByID(self._dbCollection,self._id,{ "$set" : { "statistics" : xyStatisticsDict } })
