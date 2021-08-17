@@ -33,6 +33,6 @@ def graphPage(graphName):
 
 @pluginPages.route("/",methods=["GET"])
 def mainPage():
-    learnData = learn._learnGraph().query(sessionData=api.g.sessionData,query={})
+    learnData = learn._learnGraph().query(sessionData=api.g.sessionData,query={})["results"]
     return render_template("learn.html", learnData=learnData )
 
